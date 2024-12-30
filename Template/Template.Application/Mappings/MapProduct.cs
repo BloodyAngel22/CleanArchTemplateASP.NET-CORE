@@ -1,7 +1,8 @@
 using AutoMapper;
-using TestClean.Core.Models;
+using Template.Application.DTOs;
+using Template.Core.Entities;
 
-namespace TestClean.Application.Mappings
+namespace Template.Application.Mappings
 {
     public class MapProduct: Profile
     {

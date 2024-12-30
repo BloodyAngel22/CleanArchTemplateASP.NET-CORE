@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using TestClean.Core.IRepositories;
-using TestClean.Core.Models;
+using Template.Core.Entities;
+using Template.Core.Interfaces;
+using Template.Infrastructure.Persistence;
 
-namespace TestClean.Infrastructure.Repositories
+namespace Template.Infrastructure.Repositories
 {
 	public class ProductRepository : IRepository<Product, Guid>
 	{

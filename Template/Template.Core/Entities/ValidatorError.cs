@@ -1,9 +1,9 @@
 using FluentValidation.Results;
 
-namespace TestClean.Core.Models
+namespace Template.Core.Entities
 {
-    public class ValidatorError
-    {
+	public class ValidatorError
+	{
 		public required string PropertyName { get; set; }
 		public required string ErrorMessage { get; set; }
 
@@ -15,5 +15,5 @@ namespace TestClean.Core.Models
 				ErrorMessage = x.ErrorMessage
 			}).ToList();
 		}
-    }
+	}
 }

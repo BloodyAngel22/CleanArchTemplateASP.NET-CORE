@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\TestClean.Core\TestClean.Core.csproj" />
+    <ProjectReference Include="..\Template.Core\Template.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

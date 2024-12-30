@@ -1,7 +1,7 @@
 using FluentValidation;
-using TestClean.Core.Models;
+using Template.Application.DTOs;
 
-namespace TestClean.Application.Validators
+namespace Template.Application.Validators
 {
     public class ProductValidator: AbstractValidator<ProductDTO>
     {

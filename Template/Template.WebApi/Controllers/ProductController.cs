@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using TestClean.Application.Services;
-using TestClean.Core.Models;
+using Template.Application.DTOs;
+using Template.Application.Services;
+using Template.Core.Exceptions;
 
-namespace TestClean.WebApi.Controllers
+namespace Template.WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

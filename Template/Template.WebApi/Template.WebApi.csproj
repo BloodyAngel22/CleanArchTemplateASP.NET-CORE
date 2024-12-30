@@ -7,14 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
     <PackageReference Include="MongoDB.EntityFrameworkCore" Version="8.2.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TestClean.Infrastructure\TestClean.Infrastructure.csproj" />
-    <ProjectReference Include="..\TestClean.Application\TestClean.Application.csproj" />
+    <ProjectReference Include="..\Template.Infrastructure\Template.Infrastructure.csproj" />
+    <ProjectReference Include="..\Template.Application\Template.Application.csproj" />
+    <ProjectReference Include="..\Template.Core\Template.Core.csproj" />
   </ItemGroup>
 
 </Project>

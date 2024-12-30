@@ -1,9 +1,11 @@
 using AutoMapper;
 using FluentValidation;
-using TestClean.Core.Models;
-using TestClean.Core.IRepositories;
+using Template.Core.Interfaces;
+using Template.Core.Entities;
+using Template.Core.Exceptions;
+using Template.Application.DTOs;
 
-namespace TestClean.Application.Services
+namespace Template.Application.Services
 {
     public class ProductService
     {
@@ -66,6 +68,13 @@ namespace TestClean.Application.Services
 		{
 			try
 			{
+				var validationResult = await _validator.ValidateAsync(product);
+
+				if (!validationResult.IsValid)
+				{
+					throw new ValidateException(ValidatorError.GetErrors(validationResult));
+				}
+
 				var mappedProduct = _mapper.Map<Product>(product);
 				await _productRepository.UpdateAsync(id, mappedProduct);
 			}
