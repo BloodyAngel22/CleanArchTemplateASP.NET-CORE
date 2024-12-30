@@ -1,112 +1,101 @@
-# CleanArchTemplateASP.NET-CORE
+# 🎯 **CleanArchTemplateASP.NET-CORE**
 
-CleanArchTemplate is a custom template designed to quickly scaffold an ASP.NET Core application with a clean architecture. It is intended for developers who want to start new projects with a predefined structure while following best practices in software design.
+CleanArchTemplate is your new **superweapon** for building ASP.NET Core applications with a clean architecture! 🚀  
+Want to start a new project without pain? Just use this template and enjoy clean, tidy and convenient. 
 
-This template is a personal project and may undergo changes and improvements over time as I gain more experience in clean architecture.
-
----
-
-## Features
-- **Clean Architecture**: Separate projects for Core, Application, Infrastructure, and WebApi.
-- **Pre-configured Structure**: The template includes commonly used configurations and dependencies.
-- **Extensible**: Add your custom logic without worrying about initial project setup.
+And yes, this project is still personal, but we all know that all great things start small..... 😏  
 
 ---
 
-## Installation
+## ✨ **Features**  
 
-### 1. Install the Template
-To install the CleanArchTemplate package, navigate to the directory containing the template files and run:
+- **Clean Architecture**: Separate logic, like a playlist of your favorite tracks. 🎵  
+- **Preconfigured structure**: Take what you need, and use it! Everything you need is already there.  
+- **Flexibility**: Add your code, because we don't mind limiting your creativity.  
 
+---
+
+## 🛠️ **Installation**
+
+### 1. Install the template  
+In the root directory of the template files, run:  
 ```bash
 dotnet new install ./
 ```
 
-### 2. Overwrite an Existing Package
-If you have previously installed this template and want to update it, use:
-
+### 2. Update if needed  
+If you have already installed this template, just update it:  
 ```bash
 dotnet new install --force ./
 ```
 
 ---
 
-## Usage
+## 🎉 **How to use?**
 
-To create a new project using this template, run the following command:
-
+Create a new project with one command:  
 ```bash
 dotnet new cleanarch -n "YourProjectName"
 ```
 
-This will generate a new ASP.NET Core application with the following structure:
-
+You will get such a structure that will surprise you:  
 ```
 YourProjectName/
-├── YourProjectName.Core
-├── YourProjectName.Application
-├── YourProjectName.Infrastructure
-├── YourProjectName.WebApi
-└── YourProjectName.sln
+├── YourProjectName.Core         👈 Your domain models and interfaces.
+├── YourProjectName.Application  👈 Business logic, like a playlist of your favorite tracks.
+├── YourProjectName.Infrastructure 👈 Everything related to databases and external APIs.
+├── YourProjectName.WebApi        👈 Entry point. Hello, world! 🌍
+└── YourProjectName.sln           👈 Convenient start for working in IDE.
 ```
 
-Each folder represents a layer of the clean architecture pattern:
-- **Core**: Contains domain models and interfaces.
-- **Application**: Contains application logic and services.
-- **Infrastructure**: Implements data access and external dependencies.
-- **WebApi**: Serves as the entry point of the application.
+---
+
+## 📋 **Requirements**
+
+- **.NET SDK 7.0+**: If you don't use the latest version, don't worry, you're a real programmer! 😏  
+- Some knowledge of clean architecture. If not, don't worry, start with this template!  
 
 ---
 
-## Requirements
+## 💡 **How to use?**
 
-- .NET SDK 7.0 or later
-- Familiarity with clean architecture principles is recommended but not required.
-
----
-
-## Contributions
-
-This project is primarily for personal use, but suggestions and contributions are welcome! Feel free to fork the repository and create a pull request with your improvements.
-
----
-
-## Known Issues
-
-- The template is still in development and may not cover all edge cases.
-- Some configurations might require manual adjustments depending on your project requirements.
-
----
-
-## License
-
-This project is open-source and available under the MIT License. See the LICENSE file for more details.
-
----
-
-### Example Workflow
-
-1. **Install Template**:
+1. **Install the template**:  
    ```bash
    dotnet new install ./
    ```
-
-2. **Create New Project**:
+2. **Create a new project**:  
    ```bash
-   dotnet new cleanarch -n "MyNewProject"
+   dotnet new cleanarch -n "MyEpicProject"
+   ```
+3. **Open in your IDE**:  
+   ```bash
+   cd MyEpicProject
+   code MyEpicProject.sln
+   ```
+4. **Run and enjoy**:  
+   ```bash
+   dotnet run --project MyEpicProject.WebApi
    ```
 
-3. **Open Solution**:
-   Navigate to the generated folder and open the solution file:
-   ```bash
-   cd MyNewProject
-   code MyNewProject.sln
-   ```
+Now you have a project in your hands that looks like it was done by a team of experienced developers. 🔥  
 
-4. **Run the Application**:
-   Build and run the project using:
-   ```bash
-   dotnet run --project MyNewProject.WebApi
-   ```
+---
 
-Now you have a fully functional project with a clean architecture setup!
+## 🙌 **Contributions are welcome!**
+
+This project is for personal use, but if you want to make your contribution, **welcome**! Fork, push, merge — we all here for improvements. 😎  
+
+---
+
+## 🐞 **Known issues**  
+
+- Maybe, somewhere, you will have to correct the configuration manually. No worries, this is normal.  
+- And yes, the project is still under development. So, if something goes wrong, it's just a bug. 😅  
+
+---
+
+## 📜 **License**  
+
+This project is open for everyone and licensed under the MIT license. Read more in LICENSE.  
+
+---
