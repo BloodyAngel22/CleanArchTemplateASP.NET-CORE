@@ -3,11 +3,9 @@ using Template.Core.Entities;
 
 namespace Template.Infrastructure.Persistence
 {
-	public class AppDbContext : DbContext
+	public class MongoDbContext(DbContextOptions<MongoDbContext> options) : DbContext(options)
 	{
-		public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
-
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<Product>().HasKey(x => x.Id);
 

@@ -52,7 +52,7 @@ YourProjectName/
 
 ## 📋 **Requirements**
 
-- **.NET SDK 7.0+**: If you don't use the latest version, don't worry, you're a real programmer! 😏  
+- **.NET SDK 9.0**: If you don't use the latest version, don't worry, you're a real programmer! 😏  
 - Some knowledge of clean architecture. If not, don't worry, start with this template!  
 
 ---
@@ -70,7 +70,7 @@ YourProjectName/
 3. **Open in your IDE**:  
    ```bash
    cd MyEpicProject
-   code MyEpicProject.sln
+   code .
    ```
 4. **Run and enjoy**:  
    ```bash

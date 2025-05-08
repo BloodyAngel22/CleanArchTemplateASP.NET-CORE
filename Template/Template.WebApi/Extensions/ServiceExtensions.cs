@@ -1,45 +1,49 @@
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
-using Template.Application.DTOs;
-using Template.Application.Mappings;
+using Template.Application.DTOs.Request;
 using Template.Application.Services;
 using Template.Application.Validators;
 using Template.Core.Entities;
-using Template.Core.Interfaces;
+using Template.Core.IRepositories;
 using Template.Infrastructure.Persistence;
 using Template.Infrastructure.Repositories;
 
-namespace Template.WebApi.Extensions
+namespace Template.WebApi.Extensions;
+
+public static class ServiceExtensions
 {
-    public static class ServiceExtensions
+    public static IServiceCollection AddRepositories(this IServiceCollection services)
     {
-		public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
-		{
-			// Repositories
-            services.AddScoped<IRepository<Product, Guid>, ProductRepository>();
+        services.AddScoped<IProductRepository, ProductRepository>();
 
-            // Services
-            services.AddScoped<ProductService>();
+        return services;
+    }
 
-            // Validators
-            services.AddScoped<IValidator<ProductDTO>, ProductValidator>();
+    public static IServiceCollection AddServices(this IServiceCollection services)
+    {
+        services.AddScoped<ProductService>();
 
-            // AutoMapper
-            services.AddAutoMapper(typeof(MapProduct).Assembly);
+        return services;
+    }
 
-            // DbContext
-            services.AddDbContext<AppDbContext>(opt => opt.UseMongoDB(
-                configuration.GetSection("MongoDbSettings:ConnectionString").Value ?? throw new Exception("Connection string not found"),
-                configuration.GetSection("MongoDbSettings:DatabaseName").Value ?? throw new Exception("Database name not found")
-            ));
+    public static IServiceCollection AddValidators(this IServiceCollection services)
+    {
+        services.AddScoped<IValidator<ProductDTORequest>, ProductValidator>();
 
-            return services;
-		}
+        return services;
+    }
 
-		public static IServiceCollection AddSwaggerDocumentation(this IServiceCollection services)
-        {
-            services.AddSwaggerGen();
-            return services;
-        }
-	}
+    public static IServiceCollection AddMongo(this IServiceCollection services, string connectionString, string databaseName)
+    {
+        services.AddDbContext<MongoDbContext>(opt => opt.UseMongoDB(connectionString, databaseName));
+
+        return services;
+    }
+
+    public static IServiceCollection AddPostgres(this IServiceCollection services, string connectionString)
+    {
+        services.AddDbContext<PostgresDbContext>(opt => opt.UseNpgsql(connectionString));
+
+        return services;
+    }
 }

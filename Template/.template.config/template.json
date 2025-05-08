@@ -5,7 +5,7 @@
   "name": "ASP.NET Core Clean Architecture Template",
   "identity": "CleanArch.Template",
   "shortName": "cleanarch",
-  "sourceName": "TestClean",
+  "sourceName": "Template",
   "tags": {
     "language": "C#",
     "type": "project"

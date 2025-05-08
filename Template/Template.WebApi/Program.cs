@@ -2,16 +2,27 @@ using Template.WebApi.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddApplicationServices(builder.Configuration);
-builder.Services.AddSwaggerDocumentation();
+builder.Services.AddOpenApi();
+
+builder.Services.
+    AddRepositories().
+    AddServices().
+    AddValidators();
+
+builder.Services.AddPostgres(builder.Configuration.GetConnectionStringOrThrow("Postgres"));
+
+// UNCOMMENT TO USE MONGODB
+// builder.Services.AddMongo(builder.Configuration.GetSectionValueOrThrow("MongoDBSettings:ConnectionString"), builder.Configuration.GetSectionValueOrThrow("MongoDBSettings:DatabaseName"));
+
 builder.Services.AddControllers();
 
 var app = builder.Build();
 
-app.UseSwaggerDocumentation(app.Environment);
-app.ConfigureMiddleware();
+app.UseExceptionMiddleware();
+
+app.UseScalar(app.Environment);
+app.UseHttpsRedirection();
+
 app.ConfigureRouting();
 
 app.Run();

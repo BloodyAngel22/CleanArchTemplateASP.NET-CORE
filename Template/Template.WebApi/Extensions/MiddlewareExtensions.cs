@@ -1,28 +1,44 @@
-namespace Template.WebApi.Extensions
+using Microsoft.EntityFrameworkCore;
+using Scalar.AspNetCore;
+using Template.Infrastructure.Persistence;
+
+namespace Template.WebApi.Extensions;
+
+public static class MiddlewareExtensions
 {
-    public static class MiddlewareExtensions
-    {
-		public static IApplicationBuilder UseSwaggerDocumentation(this IApplicationBuilder app, IWebHostEnvironment env)
+	public static void ConfigureRouting(this WebApplication app)
+	{
+		app.MapControllers();
+	}
+
+	public static IApplicationBuilder UseScalar(this WebApplication app, IWebHostEnvironment environment)
+	{
+		if (environment.IsDevelopment())
 		{
-			if (env.IsDevelopment())
+			app.MapScalarApiReference("docs", opt =>
 			{
-				app.UseSwagger();
-				app.UseSwaggerUI();
-			}
-
-			return app;
+				opt.WithTheme(ScalarTheme.DeepSpace);
+				opt.WithDownloadButton(true);
+			});
+			app.MapOpenApi();
 		}
 
-		public static IApplicationBuilder ConfigureMiddleware(this IApplicationBuilder app)
+		return app;
+	}
+
+	public static void UseDatabaseMigration(this IApplicationBuilder app)
+	{
+		using var scope = app.ApplicationServices.CreateScope();
+		var dbContext = scope.ServiceProvider.GetRequiredService<PostgresDbContext>();
+
+		try
 		{
-			app.UseHttpsRedirection();
-
-			return app;
+			dbContext.Database.Migrate();
 		}
-
-		public static void ConfigureRouting(this WebApplication app)
+		catch (Exception ex)
 		{
-			app.MapControllers();
+			Console.WriteLine($"Error applying migrations: {ex.Message}");
+			throw;
 		}
-    }
+	}
 }

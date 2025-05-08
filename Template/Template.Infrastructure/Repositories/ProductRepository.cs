@@ -1,95 +1,48 @@
-using Microsoft.EntityFrameworkCore;
+using Template.Core.IRepositories;
 using Template.Core.Entities;
-using Template.Core.Interfaces;
 using Template.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
-namespace Template.Infrastructure.Repositories
+namespace Template.Infrastructure.Repositories;
+
+public class ProductRepository(PostgresDbContext context) : IProductRepository
 {
-	public class ProductRepository : IRepository<Product, Guid>
-	{
-		private readonly AppDbContext _context;
+    private readonly PostgresDbContext _context = context;
 
-		public ProductRepository(AppDbContext context)
-		{
-			_context = context;
-		}
+    public async Task<IEnumerable<Product>> GetProductsAsync()
+    {
+        var entities = await _context.Products.AsNoTracking().ToListAsync();
+        return entities;
+    }
 
-		public async Task AddAsync(Product entity)
-		{
-			try
-			{
-				var newProduct = new Product
-				{
-					Name = entity.Name,
-					Price = entity.Price
-				};
+    public async Task<Product> GetProductByIdAsync(Guid id)
+    {
+        var product = await _context.Products.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id) ?? throw new Exception("Product not found");
 
-				await _context.Products.AddAsync(newProduct);
-				await _context.SaveChangesAsync();
-			}
-			catch (Exception)
-			{
-				throw;
-			}
-		}
+        return product;
+    }
 
-		public async Task DeleteAsync(Guid id)
-		{
-			try
-			{
-				var product = await _context.Products.FindAsync(id) ?? throw new Exception("Product not found");
+    public async Task AddProductAsync(Product product)
+    {
+        await _context.Products.AddAsync(product);
+        await _context.SaveChangesAsync();
+    }
 
-				_context.Products.Remove(product);
+    public async Task UpdateProductAsync(Product product)
+    {
+        var productToUpdate = await _context.Products.FindAsync(product.Id) ?? throw new Exception("Product not found");
 
-				await _context.SaveChangesAsync();
-			}
-			catch (Exception)
-			{
-				throw;
-			}
-		}
+        productToUpdate.Name = product.Name;
 
-		public async Task<IEnumerable<Product>> GetAllAsync()
-		{
-			try
-			{
-				return await _context.Products.ToListAsync();
-			}
-			catch (Exception)
-			{
-				throw;
-			}
-		}
+        await _context.SaveChangesAsync();
+    }
 
-		public async Task<Product> GetAsync(Guid id)
-		{
-			try
-			{
-				var product = await _context.Products.FindAsync(id) ?? throw new Exception("Product not found");
+    public async Task DeleteProductAsync(Guid id)
+    {
+        var product = await _context.Products.FindAsync(id) ?? throw new Exception("Product not found");
 
-				return product;
-			}
-			catch (Exception)
-			{
-				throw;
-			}
-		}
+        _context.Products.Remove(product);
 
-		public async Task UpdateAsync(Guid id, Product entity)
-		{
-			try
-			{
-				var product = await _context.Products.FindAsync(id) ?? throw new Exception("Product not found");
-
-				product.Name = entity.Name;
-				product.Price = entity.Price;
-
-				await _context.SaveChangesAsync();
-			}
-			catch (Exception)
-			{
-				throw;
-			}
-		}
-	}
+        await _context.SaveChangesAsync();
+    }
 }

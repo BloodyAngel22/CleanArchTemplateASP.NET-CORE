@@ -1,9 +1,9 @@
 using FluentValidation;
-using Template.Application.DTOs;
+using Template.Application.DTOs.Request;
 
 namespace Template.Application.Validators
 {
-    public class ProductValidator: AbstractValidator<ProductDTO>
+    public class ProductValidator: AbstractValidator<ProductDTORequest>
     {
 		public ProductValidator()
 		{
