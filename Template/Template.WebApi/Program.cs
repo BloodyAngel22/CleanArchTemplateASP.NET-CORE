@@ -4,21 +4,20 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
 
-builder.Services.
-    AddRepositories().
-    AddServices().
-    AddValidators();
+builder.Services.AddRepositories().AddServices().AddValidators();
 
-builder.Services.AddPostgres(builder.Configuration.GetConnectionStringOrThrow("Postgres"));
+builder.Services.AddPostgres();
 
 // UNCOMMENT TO USE MONGODB
-// builder.Services.AddMongo(builder.Configuration.GetSectionValueOrThrow("MongoDBSettings:ConnectionString"), builder.Configuration.GetSectionValueOrThrow("MongoDBSettings:DatabaseName"));
+// builder.Services.AddMongo();
 
 builder.Services.AddControllers();
 
 var app = builder.Build();
 
 app.UseExceptionMiddleware();
+
+app.UseDatabaseMigration();
 
 app.UseScalar(app.Environment);
 app.UseHttpsRedirection();

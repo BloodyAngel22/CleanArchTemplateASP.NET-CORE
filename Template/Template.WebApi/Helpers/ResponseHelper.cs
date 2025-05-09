@@ -6,10 +6,7 @@ public class ResponseHelper
 {
     public static IActionResult Ok<T>(T data)
     {
-        var response = new SuccessResponse<T>
-        {
-            Data = data
-        };
+        var response = new SuccessResponse<T> { Data = data };
         return new OkObjectResult(response);
     }
 
@@ -18,7 +15,7 @@ public class ResponseHelper
         var response = new ErrorResponse
         {
             Success = false,
-            Message = message ?? "Something went wrong"
+            Message = message ?? "Something went wrong",
         };
         return new BadRequestObjectResult(response);
     }

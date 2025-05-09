@@ -1,9 +1,8 @@
-namespace Template.Core.Entities
+namespace Template.Core.Entities;
+
+public class Product
 {
-	public class Product
-	{
-		public Guid Id { get; set; } = Guid.NewGuid();
-		public required string Name { get; set; }
-		public required decimal Price { get; set; }
-	}
+    public Guid Id { get; set; } = Guid.NewGuid();
+    public required string Name { get; set; }
+    public required decimal Price { get; set; }
 }

@@ -6,8 +6,7 @@ public class ServiceResult<T>
     public T? Data { get; set; }
     public string? Message { get; set; }
 
-    public static ServiceResult<T> Ok(T data) =>
-        new() { Success = true, Data = data };
+    public static ServiceResult<T> Ok(T data) => new() { Success = true, Data = data };
 
     public static ServiceResult<T> Fail(string? message = null) =>
         new() { Success = false, Message = message };

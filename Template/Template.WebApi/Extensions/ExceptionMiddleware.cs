@@ -31,11 +31,7 @@ public class ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddlewa
         context.Response.ContentType = "application/json";
         context.Response.StatusCode = StatusCodes.Status500InternalServerError;
 
-        var response = new
-        {
-            context.Response.StatusCode,
-            Message = "Server error.",
-        };
+        var response = new { context.Response.StatusCode, Message = "Server error." };
 
         return context.Response.WriteAsJsonAsync(response);
     }
